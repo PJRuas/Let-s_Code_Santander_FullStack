@@ -1,0 +1,73 @@
+html{
+    margin: 0;
+    padding: 0;
+    height: 1000px;
+    display: inline-block;
+
+}
+
+main{
+    margin: 0;
+    height: 100%;
+    padding: 0;
+}
+
+header {
+    background-color: #292729ff;
+    width: 100%;
+    height: 125px;
+    margin: 0;
+    padding: 0;
+}
+
+header div{
+    width: 35px;
+    height: 35px;
+    background-color: #00acb4ff;
+    margin-top: 70px;
+}
+
+section h1.title {
+    background-color: #0095e2ff;
+    width: 100%;
+    height: 100px;
+    margin: 0;
+    padding: 0;
+}
+
+section h2{
+    padding: 0;
+    margin: 0;
+}
+
+section.conteudo{
+    background-color: #6e37a3ff;
+    width: 50%;
+    height: 500px;
+    margin: 0;
+    padding: 0;
+}
+
+section.navegacao{
+    background-color: #ff8434ff;
+    width: 25%;
+    height: 500px;
+    margin: 0;
+    padding: 0;
+}
+
+section.sideBar{
+    background-color: #ffaa63ff;
+    width: 25%;
+    height: 500px;
+    margin: 0;
+    padding: 0;
+}
+
+footer {
+    background-color: #0095e2ff;
+    width: 100%;
+    height: 100px;
+    margin: 0;
+    padding: 0;
+}

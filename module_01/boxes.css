@@ -1,0 +1,52 @@
+main{
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+div{
+    background-color: gray;
+    height: 100px;
+    width: 100px;
+    transition: 1s all ease;
+}
+
+div:not(:last-of-type){
+    margin-bottom: 5px;
+}
+
+div.--is-red{
+    background: red;
+}
+
+div:hover{
+    width: 100%;
+    background-color: #ffffff;   
+}
+
+div:last-of-type:hover{
+    background-color: blueviolet;
+}
+
+div.borda-arredondada {
+    border-radius: 20px;
+}
+
+label.required::after{
+    content: "*";
+    color: blue;
+}
+
+div.helper{
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    top: 50%;
+    left: -25px;
+    background-color: blue;
+
+}
+
+div.helper:hover{
+    width: 300px;
+}

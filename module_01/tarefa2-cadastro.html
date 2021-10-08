@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link href="cadastro-main.css" rel="stylesheet" />
+</head>
+<header>
+    <h1 class="title" id="form-title">Cadastro de Cliente</h1>
+</header>
+
+<body>
+    <main>
+        <form onsubmit="console.table([...new FormData(document.querySelector('form'))]);return false;">
+            <fieldset class="field-set" id="acess-info">
+                <legend>Informações de Acesso</legend>
+                <input type="text" placeholder="USUÁRIO" name="user" required>
+                <input type="password" name="password" placeholder="SENHA" required>
+            </fieldset>
+            <fieldset>
+                <legend>Cadastro Básico</legend>
+                <label>
+                    Nome*
+                    <input type="text" placeholder="Nome" name="name" required>
+                </label>
+                <label>
+                    Sobrenome*
+                    <input type="text" placeholder="Nome" name="surname" required>
+                </label>
+                <label>
+                    Data de Nascimento*
+                    <input type="date" name="birthdate" required/>
+                </label>
+                <br />
+                <label>
+                    Telefone*
+                    <input type="tel" placeholder="(xx)9.9999-9999" name="telephone" required>
+                </label>
+                <label>
+                    E-mail*
+                    <input type="email" placeholder="email@exemplo.com" name="email" required>
+                </label>
+                <br />
+                <label>
+                    Endereço
+                    <input type="text" placeholder="Logradouro" name="address">
+                </label> 
+                <label>
+                    Número
+                    <input type="number" name="address_number">
+                </label>
+                <label>
+                    Complemento
+                    <input type="text" placeholder="[casa, apartamento, sala...]" name="address_complement">
+                </label>
+            </fieldset>
+            <fieldset>
+                <legend>Dados da Entrega</legend>
+                <label>
+                    Endereço*
+                    <input type="text" placeholder="Logradouro" name="delivery_address" required>
+                </label>
+                <label>
+                    Número*
+                    <input type="number" name="delivery_address_number" required>
+                </label>
+                <label>
+                    Complemento
+                    <input type="text" placeholder="[casa, apartamento, sala...]" name="delivery_address_complement">
+                </label>
+            </fieldset>
+            <fieldset>
+                <legend>Opcionais</legend>
+                <label>
+                    Cor Preferida
+                    <input id="cor-preferida" type="color" name="color">
+                </label>
+                <label>
+                    Mês de Cadastro
+                    <input type="date" name="sign-up_date">
+                </label>
+                <label>
+                    Foto
+                    <input type="file" name="photo">
+                </label>
+            </fieldset>
+            <button type="reset">Reset</button>
+            <button onclick="console.table([...new FormData(document.querySelector('form'))]);" type="submit" >Enviar</button>
+        </form>
+    </main>
+</body>
