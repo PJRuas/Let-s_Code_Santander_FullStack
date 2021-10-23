@@ -9,14 +9,14 @@
 </head>
 <body>
     <button type="button" id="open-modal">Open Modal</button>
+    <button type="button" id="list-modal">List Modal</button>
     <div class="modal"> <!-- Define o modal com uma lista vazia, e dois botões.
                              A lista vazia é depois preenchida pelo JavaScript, para ficar dinâmica.
                              O botão OK submete o formulário e executa o tratamento definido no JS.
                              O botão Cancel segue o tratamento definido na função ".cancel" do JS. -->
         <form>
-            <ul></ul>
-            <button type="button" class="cancel" onclick="myModal.cancel()">Cancel</button>
-            <button type="submit">Ok</button>
+            <button type="button" class="fixed" id='cancel-button' onclick="myModal.cancel()">Cancel</button>
+            <button type="submit" class="fixed">Ok</button>
         </form>
     </div>
 

@@ -38,7 +38,7 @@ body{
     width: 200px;
 }
 
-.modal button.cancel{
+#cancel-button{
     background-color: #e44e20;
   border: 0;
   border-radius: 4px;
