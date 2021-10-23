@@ -1,4 +1,9 @@
-const buttonOpenModal = document.querySelector('button[name="open-modal"]') //seleciona na DOM da página, o elemento "button" de "name = 'open-modal'" e atribui a uma variável
+class Button { //cria uma classe para gerar um botão genérico que recebe um elemento DOM e uma função "onclick"
+    constructor(domElementId, onClickFn){
+        this._domElement = document.querySelector(`button[id=${domElementId}]`) //seleciona o elemento DOM relativo ao botão
+        this._domElement.onclick = onClickFn //adiciona a função passada para o botão
+    }
+}
 
 const successOrFailure = {  //cria um objeto com as funções de tratamento para 'falha' e 'sucesso'. Essas funções são invocadas ao fechar o modal.
         fail: () => {
@@ -14,13 +19,6 @@ const modalInputs = {  //um objeto contendo os pares que formam os inputs do mod
             'email':'email',
             'age':'number'
         }
-
-buttonOpenModal.onclick = function(){  //pega o button declarado acima e adiciona a função quando clicado, iniciando um modal novo com os inputs passados acima.
-    if(!myModal.toggleOpenButton()){ //verifica se o modal está fechado. Se sim, abre ele
-        myModal.open(successOrFailure, modalInputs)
-    }
-    else { } //se o modal estiver aberto, bloqueia o botão
-}
 
 const myModal = (function(){  //módulo do modal (uma função factory que é iniciada automaticamente) 
     const _CLASS_OPEN = "--is-open" //essa constante serve para que seja possível adicionar/remover um atributo "class" da <div> modal
@@ -50,6 +48,12 @@ const myModal = (function(){  //módulo do modal (uma função factory que é in
     }
     function toggleOpenButton(){ //verifica se o modal está aberto ou fechado para passar esta informação ao button "open modal"
         return _modal.classList.contains(_CLASS_OPEN)
+    }
+    function modalOpener(settings, fields){ //junta as funções "open" e "toggleOpenButton" para serem passadas juntas ao botão
+        if(!toggleOpenButton()){ //verifica se o modal está fechado. Se sim, abre ele
+            open(settings, fields)
+        }
+        else { } //se o modal estiver aberto, bloqueia o botão
     }
     function _resetForm(){ //reseta o "form" do modal
         _form.reset()
@@ -88,7 +92,10 @@ const myModal = (function(){  //módulo do modal (uma função factory que é in
     return{ //faz com que as funções "cancel", "close", "open" e "toggleOpenButton" declaradas dentro do módulo possam ser usadas fora dele
         cancel,
         close,
+        modalOpener,
         open,
         toggleOpenButton
     }
 })()
+
+const buttonOpenModal = new Button('open-modal', ()=>{myModal.modalOpener(successOrFailure, modalInputs)})
