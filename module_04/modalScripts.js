@@ -67,7 +67,7 @@ const myModal = (function(){  //módulo do modal (uma função factory que é in
 
     function createInfoFields(object){
         const _ul = document.createElement('ul') //cria uma lista não ordenada para ser adicionada ao modal
-        for(prop in object){
+        for(prop of object){
             let li = document.createElement('li') // 1- aqui cria um item da lista vazio
             let newInfoField = document.createElement('span') // 2- aqui cria um span indefinido
             newInfoField.textContent = prop // 3- aqui define o texto do span como sendo o valor passado na função
