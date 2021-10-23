@@ -26,6 +26,7 @@ body{
     padding: 15px;
     padding-left: 0;
     align-items: center;
+    height: fit-content;
 }
 
 .modal form ul li:not(:first-child){
