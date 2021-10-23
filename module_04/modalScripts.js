@@ -5,57 +5,65 @@ class Button { //cria uma classe para gerar um botão genérico que recebe um el
     }
 }
 
-const successOrFailure = {  //cria um objeto com as funções de tratamento para 'falha' e 'sucesso'. Essas funções são invocadas ao fechar o modal.
+const userDB = new Map() //simula uma database simples
+
+const insertUser = {  //cria um objeto com as funções de tratamento para 'falha' e 'sucesso'. Essas funções são invocadas ao fechar o modal.
         fail: () => {
             console.log('User has cancelled') //retorna uma mensagem de falha
         },
-        success: input => {
-            console.log(`User ${input.placeholder}: ${input.value}`) //analisa um input e retorna uma string contendo o nome e valor digitado no campo
+        success: function() {
+            let userName = `${document.querySelector('.modal form input[placeholder="name"]').value} ${document.querySelector('.modal form input[placeholder="surname"]').value}`
+            let userEmail = document.querySelector('.modal form input[placeholder="email"]').value
+            userDB.set(userName, userEmail)  //adiciona o usuario a database simples
         }
     }
 
-const modalInputs = {  //um objeto contendo os pares que formam os inputs do modal. Eles são no formato "placeholder":"type".
+const newUserInputs = {  //um objeto contendo os pares que formam os inputs do modal. Eles são no formato "placeholder":"type".
             'name':'text',
+            'surname':'text',
             'email':'email',
-            'age':'number'
         }
-
-const modalInfos = ['This is a message', 'This is another message']
 
 const myModal = (function(){  //módulo do modal (uma função factory que é iniciada automaticamente) 
     const _CLASS_OPEN = "--is-open" //essa constante serve para que seja possível adicionar/remover um atributo "class" da <div> modal
     const _modal = document.querySelector('.modal') //seleciona na DOM da página o elemento da classe "modal" e atribui a uma variável
     const _form = document.querySelector('.modal form') //seleciona na DOM o elemento do tipo "form" localizado diretamente dentro do "modal"
-    // const _ul = document.querySelector('.modal form ul') //seleciona na DOM o elemento do tipo "ul" localizado diretamente dentro do "form" dentro do "modal"
+    const _submitButton = document.querySelector('.modal form button[type="submit"]')
+    const _cancelButton = document.querySelector('.modal form button[type="button"]')
+ 
 
     let _successFn; //uma variável indefinida que depois recebe a função "success" definida na const successOrFailure
     let _failFn; //uma variável indefinida que depois recebe a função "fail" definida na const successOrFailure
     let _inputs = []; //uma variável que depois recebe um array contendo os inputs do modal
 
 
-    function modalHandler(type, settings, fields){
-        if(type == 'getInfo'){
-            createInputFields(fields) //cria os inputs dentro do modal
+    function modalHandler(object){
+        _submitButton.innerText = (object.submitText ? object.submitText : 'Ok') //define o texto que aparece nos botões do modal
+        _cancelButton.innerText = (object.cancelText ? object.cancelText : 'Cancel')
+        if(object.type == 'getInfo'){
+            showItens([_submitButton,_cancelButton])
+            createInputFields(object.fields) //cria os inputs dentro do modal
             _inputs = document.querySelectorAll('.modal form ul li input') //pega na DOM uma lista de inputs pertencentes ao modal e atribui a uma variável
-            if(settings.fail){ //testa se foi passado o atributo "fail" na const successOrFailure e, caso sim, o atribui a uma variável
-                _failFn = settings.fail
+            if(object.settings.fail){ //testa se foi passado o atributo "fail" na const successOrFailure e, caso sim, o atribui a uma variável
+                _failFn = object.settings.fail
             }
     
-            if(settings.success){ //testa se foi passado o atributo "success" na const successOrFailure e, caso sim, o atribui a uma variável
-                _successFn = settings.success
+            if(object.settings.success){ //testa se foi passado o atributo "success" na const successOrFailure e, caso sim, o atribui a uma variável
+                _successFn = object.settings.success
             }
     
             _form.onsubmit = function(event){ 
                 event.preventDefault() //impede que a página seja recarregada ao enviar o formulário (clicar em OK no modal)
-                for(field of _inputs){ //aplica a função "success" (declarada na const successOrFailure) para cada um dos inputs do modal
-                    _successFn(field)
+                for(input of _inputs){ //aplica a função "success" (declarada na const successOrFailure) para cada um dos inputs do modal
+                    _successFn(input)
                 }
                 close() //esconde o modal
                 _resetForm() //reseta o formulário do modal
             }
         }
-        else if(type == 'showInfo'){
-            createInfoFields(fields)
+        else if(object.type == 'showInfo'){
+            hideItens([_cancelButton])
+            createInfoFields(object.fields)
             _form.onsubmit = function(event){
                 event.preventDefault() //impede que a página seja recarregada ao enviar o formulário (clicar em OK no modal)
                 close() //esconde o modal
@@ -63,6 +71,21 @@ const myModal = (function(){  //módulo do modal (uma função factory que é in
             }
         }       
     }
+
+
+    function hideItens(itens){ //esconde itens da DOM
+        for (iten of itens){
+            iten.classList.add('--is-hidden')
+        }
+    }
+    function showItens(itens){ //mostra itens da DOM
+        for (iten of itens ){
+            if(iten.classList.contains('--is-hidden')){
+                iten.classList.remove('--is-hidden')
+            }
+        }
+    }
+
 
 
     function createInfoFields(object){
@@ -110,7 +133,7 @@ const myModal = (function(){  //módulo do modal (uma função factory que é in
 
     function modalOpener(object){ //junta as funções "open" e "toggleOpenButton" para serem passadas juntas ao botão
         if(!toggleOpenButton()){ //verifica se o modal está fechado. Se sim, abre ele
-            open(object.type, object.settings, object.fields)
+            open(object)
         }
         else { } //se o modal estiver aberto, bloqueia o botão
     }
@@ -122,7 +145,7 @@ const myModal = (function(){  //módulo do modal (uma função factory que é in
 
 
     function cancel(){ //executa a função declarada antes para caso de falha e fecha o modal
-        _failFn()
+        if(_failFn){_failFn()}
         close()
     }
 
@@ -134,8 +157,8 @@ const myModal = (function(){  //módulo do modal (uma função factory que é in
     }
 
 
-    function open(type, settings, fields){
-        modalHandler(type, settings, fields) //transfere o tratamento do moda para a função específica
+    function open(object){
+        modalHandler(object) //transfere o tratamento do moda para a função específica
         _modal.classList.add(_CLASS_OPEN) //adiciona a classe _CLASS_OPEN ao modal, fazendo com que o CSS mostre ele
     }
 
@@ -147,5 +170,5 @@ const myModal = (function(){  //módulo do modal (uma função factory que é in
     }
 })()
 
-const buttonOpenModal = new Button('open-modal', ()=>{myModal.modalOpener({type:'getInfo',settings: successOrFailure, fields: modalInputs})})
-const buttonList = new Button('list-modal', ()=>{myModal.modalOpener({type: 'showInfo', fields: modalInfos})})
+const buttonSignUp = new Button('sign-up', ()=>{myModal.modalOpener({type:'getInfo',settings: insertUser, fields: newUserInputs})})
+const buttonList = new Button('list-users', ()=>{myModal.modalOpener({type: 'showInfo', fields: userDB, submitText: 'Back'})})
