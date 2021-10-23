@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Test</title>
+    <link href="modalStyle.css" rel="stylesheet"/> <!-- Importa o CSS de um arquivo separado-->
+</head>
+<body>
+    <button type="button" name="open-modal">Open Modal</button>
+    <div class="modal"> <!-- Define o modal com uma lista vazia, e dois botões.
+                             A lista vazia é depois preenchida pelo JavaScript, para ficar dinâmica.
+                             O botão OK submete o formulário e executa o tratamento definido no JS.
+                             O botão Cancel segue o tratamento definido na função ".cancel" do JS. -->
+        <form>
+            <ul></ul>
+            <button type="button" class="cancel" onclick="myModal.cancel()">Cancel</button>
+            <button type="submit">Ok</button>
+        </form>
+    </div>
+
+    <script src="modalScripts.js"></script> <!-- Importa o JavaScript do arquivo modalScripts.js -->
+
+</body>
+</html>

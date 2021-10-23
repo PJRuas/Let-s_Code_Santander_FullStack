@@ -1,0 +1,65 @@
+body{
+    background-color: grey;
+}
+.modal{
+    background: #e6e6e6;
+    box-shadow: 20px 20px 30px rgb(0 0 0 /50%);
+    box-sizing: border-box;
+    width: 250px;
+    height: 170px;
+    opacity: 1;
+    padding: 15px;
+    position: fixed;
+    transition: .15s all ease;
+    top: calc(50% - 85px);
+    left: calc(50% - 125px);
+}
+.modal:not(.--is-open){
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(.4);
+}
+
+.modal form ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 15px;
+    padding-left: 0;
+    align-items: center;
+}
+
+.modal form ul li:not(:first-child){
+    padding-top: 5px;
+    width: fit-content;
+}
+
+.modal form ul li input{
+    width: 200px;
+}
+
+.modal button.cancel{
+    background-color: #e44e20;
+  border: 0;
+  border-radius: 4px;
+  padding: 7px;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.modal button{
+    background-color: #3979d8;
+  border: 0;
+  border-radius: 4px;
+  padding: 7px;
+  color: rgb(231, 246, 255);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.modal button:hover{
+    background-color: rgba(39, 36, 36, 0.274);
+}

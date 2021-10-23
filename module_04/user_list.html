@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+</head>
+<header>
+    <h1>Register</h1>
+</header>
+<body>
+    <form>
+        <input type="text" name="userInput"/><button type="submit" name="send">Send</button>
+    </form>
+    <section>
+        <h2>User List</h2>
+        <ul></ul>
+    </section>
+</body>
+<script>
+
+    function createUser(){
+        const inputText = document.querySelector('input [name = userInput]');
+        const user = document.createTextNode(inputText.value + ' ');
+        return user;
+    }
+
+    function removeElement(element){
+        element.remove()
+    }
+
+    function createRemoveButton(){
+        const buttonRemove = document.createElement('button');
+        const parent = buttonRemove.parentElement;
+        buttonRemove.innerText = 'Remove';
+        buttonRemove.onclick = removeElement(parent);
+        return buttonRemove
+    }
+
+    function insertUser(){
+        const ul = document.querySelector('ul');
+        const li = document.createElement('li');
+        li.appendChild(createUser());
+        li.appendChild(createRemoveButton());
+        ul.appendChild(li);
+        
+    }
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(evt) {
+        insertUser();
+        evt.preventDefault();
+    })
+
+    // const remover = document.querySelectorAll('button [name = remove]');
+    // remover.addEventListener('click', function(evt) {
+    //     removeUser();
+    // })
+
+
+</script>
+
+</html>
