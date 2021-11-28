@@ -4,13 +4,12 @@
         <div class="product-image-limits"><img mat-card-image class="product-image" src={{product.imageUrl}} alt="Picture of {{product.name}}"></div>
         <mat-card-content>
           <p>
-            {{product.name}} <br>
-            {{product.description}}
+            {{product.name}}
           </p>
           <h3>{{product.price}}</h3>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary"><mat-icon>add_shopping_cart</mat-icon></button>
+          <button mat-raised-button color="primary" (click)="addToCart(product)"><mat-icon>add_shopping_cart</mat-icon></button>
           <button mat-raised-button color="accent"><mat-icon>info</mat-icon></button>
         </mat-card-actions>
       </mat-card>

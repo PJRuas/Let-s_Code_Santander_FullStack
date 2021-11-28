@@ -8,27 +8,38 @@ export class PersistenceService {
 
   constructor() { }
 
-  addToLocalStorage(product: Product){
-    let list: Product[] = JSON.parse(localStorage.getItem("products") ?? "[]");
-    list.push(product);
-    localStorage.setItem("products", JSON.stringify(list))
+
+
+  addToLocalStorage(iten: any, key: string){
+    let list: any[] = JSON.parse(localStorage.getItem(key) ?? "[]");
+    list.push(iten);
+    localStorage.setItem(key, JSON.stringify(list))
   }
 
-  loadFromLocalStorage(): Product[] {
-    return JSON.parse(localStorage.getItem("products") ?? "[]");
+  loadFromLocalStorage(key: string, defaultList: any[] = []): any[] {
+    return JSON.parse(localStorage.getItem(key) ?? JSON.stringify(defaultList));
   }
 
-  loadToLocalStorage(products: Product[]){
-    localStorage.setItem("products", JSON.stringify(products))
+  loadToLocalStorage(iten: any[], key: string){
+    localStorage.setItem(key, JSON.stringify(iten))
   }
 
-  loadProduct(id: string) {
-    let list: Product[] = JSON.parse(localStorage.getItem('products') ?? "[]")
-    return list.find(t => t.id == id)
+  removeFromLocalStorage(id: string, key: string) {
+    let list: any[] = JSON.parse(localStorage.getItem(key) ?? "[]")
+    localStorage.setItem(key, JSON.stringify(list.filter(i => i.id != id)))
   }
 
-  searchProduct(text: string){
-    let list: Product[] = JSON.parse(localStorage.getItem('products') ?? "[]")
-    return list.filter(t => t.name.includes(text))
+  searchStorage(iten: string, key: string){
+    let list: any[] = JSON.parse(localStorage.getItem(key) ?? "[]")
+    return list.filter(i => i.name.includes(iten))
+  }
+
+  verifyStorage(iten: any, key: string){
+    let list = JSON.parse(localStorage.getItem(key) ?? "[]")
+    return (iten in list)
+  }
+
+  clearStorage(key: string){
+    localStorage.setItem(key, "[]")
   }
 }

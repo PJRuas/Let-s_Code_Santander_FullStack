@@ -17,6 +17,7 @@ import { CartComponent } from './cart/cart.component';
 import { StoreComponent } from './store/store.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchBarComponent } from './shared/models/search-bar/search-bar.component';
+import { ProductComponent } from './product/product.component';
 
 
 
@@ -28,7 +29,8 @@ import { SearchBarComponent } from './shared/models/search-bar/search-bar.compon
     HeaderComponent,
     CartComponent,
     StoreComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

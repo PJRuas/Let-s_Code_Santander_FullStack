@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { PersistenceService } from './persistence.service';
 import { Product } from './shared/models/product';
 
 const dbUrl = 'http://'
@@ -8,14 +9,24 @@ const dbUrl = 'http://'
 })
 export class ShoppingService {
 
-  constructor() { }
+  constructor(private persistenceService: PersistenceService) { }
+
+loadCart(): Product[]{
+  return this.persistenceService.loadFromLocalStorage('cart')
+}
 
 addToCart(product: Product){
-  
+  if(!this.verifyCart(product)){
+    this.persistenceService.addToLocalStorage(product, 'cart')
+  }
 }
 
 removeFromCart(product: Product){
-  
+  this.persistenceService.removeFromLocalStorage(product.id, 'cart')
+}
+
+verifyCart(product: Product): boolean{
+  return this.persistenceService.verifyStorage(product, 'cart')
 }
 
 }
