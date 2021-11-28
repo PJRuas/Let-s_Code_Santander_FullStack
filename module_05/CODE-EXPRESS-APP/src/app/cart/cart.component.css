@@ -1,0 +1,22 @@
+.product-list {
+    margin: auto;
+  }
+  
+  .product-display {
+      height: 450px;
+      margin: 10px;
+      padding: 20px;
+      display: flex;
+    }
+    
+  .product-image {
+      max-height:250px;
+      max-width: 250px;
+      padding: 0;
+      margin: 5px 5px 5px 5px;
+  }
+  
+  .product-image-limits{
+    height: 250px;
+    padding: 0;
+  }

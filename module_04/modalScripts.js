@@ -19,10 +19,10 @@ const insertUser = {  //cria um objeto com as funções de tratamento para 'falh
     }
 
 const newUserInputs = {  //um objeto contendo os pares que formam os inputs do modal. Eles são no formato "placeholder":"type".
-            'name':'text',
-            'surname':'text',
-            'email':'email',
-        }
+            name: {type :'text', required: true},
+            surname: {type:'text', required: false},
+            email: {type:'email', required: true}
+}
 
 const myModal = (function(){  //módulo do modal (uma função factory que é iniciada automaticamente) 
     const _CLASS_OPEN = "--is-open" //essa constante serve para que seja possível adicionar/remover um atributo "class" da <div> modal
@@ -107,8 +107,8 @@ const myModal = (function(){  //módulo do modal (uma função factory que é in
             let li = document.createElement('li') // 1- aqui cria um item da lista vazio
             let newInputField = document.createElement('input') // 2- aqui cria um input indefinido
             newInputField.placeholder = prop // 3- aqui define o placeholder do input como sendo a chave do par no objeto
-            newInputField.type = object[prop] // 4- aqui define o type do input como sendo o valor do par no objeto
-            newInputField.required = true // 5- define o input como requerido
+            newInputField.type = object[prop].type // 4- aqui define o type do input como sendo o valor do par no objeto
+            newInputField.required = object[prop].required  // 5- define o input como requerido
             li.appendChild(newInputField) // 6- coloca o input criado dentro do item de lista vazio
             _ul.appendChild(li) // 7- adiciona o item de lista, agora contendo o input, dentro da "ul"
         }
