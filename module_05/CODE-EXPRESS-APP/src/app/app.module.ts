@@ -8,6 +8,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -43,6 +45,7 @@ import { ProductComponent } from './product/product.component';
     MatGridListModule,
     MatToolbarModule,
     MatListModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -28,7 +28,7 @@
         <p>
             {{product.name}}
         </p>
-        <h3>{{product.price}}</h3>
+        <h3>{{product.price | currency:'USD' }}</h3>
         </mat-card-content>
         <mat-card-actions>
         <button mat-raised-button color="warn" (click)="removeFromCart(product)"><mat-icon>delete</mat-icon></button>

@@ -6,10 +6,10 @@
           <p>
             {{product.name}}
           </p>
-          <h3>{{product.price}}</h3>
+          <h3>{{product.price | currency:'USD'}}</h3>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="addToCart(product)"><mat-icon>add_shopping_cart</mat-icon></button>
+          <button mat-raised-button color="primary" (click)="addToCart(product)" (click)="showMessage('Added to cart')"><mat-icon>add_shopping_cart</mat-icon></button>
           <button mat-raised-button color="accent"><mat-icon>info</mat-icon></button>
         </mat-card-actions>
       </mat-card>
