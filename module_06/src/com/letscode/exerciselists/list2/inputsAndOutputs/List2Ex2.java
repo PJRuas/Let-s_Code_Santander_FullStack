@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class List2Ex2 {
     public static void main(String[] args) {
-        
+
         timesTable(numberHandler());
 
     };
