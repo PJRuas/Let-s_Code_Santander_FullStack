@@ -1,5 +1,7 @@
 package com.letscode.exerciselists.list3.arraysAndLoops.List3Ex8;
 
+//"Write a code that takes 5 people, calculates their IMC and say if any is under or aboce IMC's correct range (18.5 < IMC < 25)"
+
 import java.util.Scanner;
 
 public class List3Ex8 {
@@ -28,12 +30,19 @@ public class List3Ex8 {
     }
 
     public static void checkIMC(Person8[] people) {
+        int overWeight = 0;
+        int underWeight = 0;
         for (int i = 0; i < people.length; i++){
             float currentIMC = people[i].weight/(people[i].height*people[i].height);
             if (currentIMC < 18.5) {
                 System.out.printf("%s is underweight. His/her IMC is %.1f", people[i].name, currentIMC);
+                underWeight += 1;
             } else if (currentIMC > 25 ) {
                 System.out.printf("%s is overweight. His/her IMC is %.1f", people[i].name, currentIMC);
+                overWeight += 1;
+            }
+            if (overWeight + underWeight == 0){
+              System.out.println("Everyone is within correct IMC range.");
             }
         }
     }
