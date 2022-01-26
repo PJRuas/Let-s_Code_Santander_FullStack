@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.letscode.utils</groupId>
+    <artifactId>ValidatorClient</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <distributionManagement>
+        <repository>
+            <id>repsy</id>
+            <name>My Private Maven Repository on Repsy</name>
+            <url>https://repo.repsy.io/mvn/pjruas/default</url>
+        </repository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>repsy</id>
+            <name>My Private Maven Repository on Repsy</name>
+            <url>https://repo.repsy.io/mvn/pjruas/default</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.letscode.utils</groupId>
+            <artifactId>GenericValidator</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+</project>
